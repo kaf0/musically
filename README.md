@@ -1,21 +1,44 @@
-Research & Project approval (Part 1)
+Music Recommender Script Documentation
 
-Creating a music recommender based on a set of 'liked' songs involves several steps. Here's a high-level overview of how to approach this:
+Overview
 
- 1. Data collection:
-    Collect a dataset of songs, including features like tempo, key, duration, danceability, energy, etc. You can use APIs like Spotify Web API or other music databases to gather this information.
+This script provides a simple music recommender system based on a set of 'liked' songs. The recommender uses the Spotify Web API to fetch audio features for both the 'liked' songs and a given playlist. It then calculates the similarity between the 'liked' songs and the songs in the playlist using cosine similarity and recommends the top N most similar songs.
 
- 2. Data preprocessing:
-    Clean the data by handling missing values, normalizing features, and converting categorical variables into numerical values.
+Requirements
 
- 3. Feature selection:
-    Choose relevant features that can help determine song similarity, such as genre, tempo, key, energy, danceability, etc.
+    Python 3.6 or higher
+    spotipy
+    pandas
+    A Spotify Developer account with a registered application (Client ID and Client Secret)
 
- 4. User preferences:
-    Maintain a list of 'liked' songs for each user. These songs will be used to find similar songs and make recommendations.
 
- 5. Calculate similarity:
-    Calculate the similarity between the 'liked' songs and the other songs in the dataset using a similarity metric like cosine similarity, Euclidean distance, or Pearson correlation.
+Installation
 
- 6. Recommend songs:
-    Sort the songs based on their similarity scores and recommend the top N songs to the user.
+Install the required packages using pip:
+
+pip install spotipy pandas
+
+Configuration
+
+    Register your application on the Spotify Developer Dashboard to get your Client ID and Client Secret.
+    Set up environment variables for SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET with your actual Client ID and Client Secret.
+
+Usage
+
+    Replace the placeholders song_id_1, song_id_2, song_id_3, and playlist_id in the musically.py script with actual Spotify song IDs (for the 'liked' songs) and a playlist ID containing songs to compare.
+
+    Set the number of recommended songs by changing the value of N.
+
+    Run the Python script:
+
+python musically.py
+
+The script will output the top N recommended songs based on the similarity to the 'liked' songs.
+
+Customization
+
+    To use a different similarity metric, replace the cosine_similarity function with another similarity function from sklearn.metrics.pairwise (e.g., euclidean_distances or manhattan_distances).
+
+    To filter the recommended songs by additional criteria, modify the recommended_songs list comprehension. For example, you can filter by a specific genre, popularity threshold, or release year.
+
+    To further improve the recommender system, consider incorporating additional features such as song lyrics, genre information, or collaborative filtering based on user preferences.
